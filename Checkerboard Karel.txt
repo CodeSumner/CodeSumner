@@ -1,0 +1,93 @@
+https://codeinplace.stanford.edu/cip3/share/c3OV663VoE5KVEYjpjRr
+CheckerBoardKarel.txt
+from karel.stanfordkarel import *
+
+"""
+Karel should fill the whole world with beepers.
+"""
+
+def main():
+    """
+    Stratedy: for multipy worlds, always take care the small one first, at the same time, think about how the code works at the extension worlds ( bigger worlds ) when dealing with the first one.
+    Learning notes: if statement is the key to solve Karel world challanges.
+    Salute to Richard E. Pattis.
+    """
+    
+    if left_is_clear():
+        fill_beepers_row_A()
+        fill_two_rows()
+        if left_is_clear():
+            fill_two_rows()
+            ascend_next_row()
+            fill_beepers_row_B()
+    go_bottom()
+    
+def fill_two_rows():
+    ascend_next_row()
+    fill_beepers_row_B()
+    ascend_next_row()
+    fill_beepers_row_A()
+            
+def fill_beepers_row_A():
+    put_beeper()
+    if front_is_clear():
+        fill_two_beepers()
+        if front_is_clear():
+            move()
+        back_to_frist_col()
+        
+def fill_beepers_row_B():
+    if front_is_clear():
+        put_one_beeper()
+        fill_one_beeper()
+        move()
+        if front_is_clear():
+            put_one_beeper()
+        back_to_frist_col()
+        
+def ascend_next_row():
+    turn_left()
+    move()
+    turn_right()
+    
+def fill_two_beepers():
+    for i in range(2):
+        fill_one_beeper()
+        
+def fill_one_beeper():
+    move()
+    move()
+    put_beeper()
+    
+def put_one_beeper():
+    move()
+    put_beeper()
+
+def back_to_frist_col():
+    turn_back()
+    go_to_wall()
+    turn_back()
+
+def go_to_wall():
+    while front_is_clear():
+        move()
+
+def go_bottom():
+    turn_right()
+    while front_is_clear():
+        move()
+    turn_left()
+    
+def turn_right():
+    for i in range(3):
+        turn_left()
+        
+def turn_back():
+    turn_left()
+    turn_left()
+        
+
+
+# There is no need to edit code beyond this point
+if __name__ == '__main__':
+    main()
