@@ -1,0 +1,144 @@
+https://codeinplace.stanford.edu/cip3/share/yixKXnduHLKYKKmmy17r
+
+Midpoint Karel.txt
+from karel.stanfordkarel import *
+
+"""
+File: main.py
+--------------------
+When you finish writing this file, Karel should be able to find
+the midpoint
+"""
+"""
+def main():
+    """
+    #Strategy_X: never mind what strategy is, always control the flow to the mountain!
+"""
+    ascend_east()
+    go_bottom()
+    put_beeper()
+    
+def ascend_east():
+    while left_is_clear():
+        small_world_ascend()
+        if left_is_clear():
+            middle_world_ascend()
+            if left_is_clear():
+                big_world_ascend()
+                
+def small_world_ascend():
+    one_step_ascend()
+    
+def middle_world_ascend():
+    three_steps_ascend()
+    one_step_ascend()
+    
+def big_world_ascend():
+    one_step_ascend()
+    
+def one_step_ascend():
+    turn_left()
+    move()
+    turn_right()
+    
+def three_steps_ascend():
+    move()
+    turn_left()
+    move()
+    move()
+    turn_right()
+    move()
+    
+def go_bottom():
+    turn_right()
+    while front_is_clear():
+        move()
+    turn_left()
+    
+def turn_right():
+    for i in range(3):
+        turn_left()
+        
+def turn_back():
+    turn_left()
+    turn_left()
+  
+ """
+  
+
+def main():
+    """
+    Strategy:
+    """
+    put_diagnal()
+    go_down()
+    check_beeper_mid()
+    go_down()
+    clean_diagnal()
+    check_midpoint()
+    go_down()
+    turn_left()
+    turn_left()
+    while(no_beepers_present()):
+        move()
+    turn_left()
+    turn_left()
+        
+    
+def put_diagnal():
+    while(front_is_clear()):
+        put_beeper()
+        move()
+        turn_left()
+        move()
+        turn_right()
+    put_beeper()#fence post
+        
+def turn_right():
+    for i in range(3):
+        turn_left()
+        
+def go_down():
+    while not_facing_south():
+        turn_left()
+    while(front_is_clear()):
+        move()
+    turn_left()
+def check_beeper_mid():
+    turn_left()
+    turn_left()
+    while(front_is_clear()):
+        move()
+        if(beepers_present()):
+            put_beeper()
+        turn_right()
+        move()
+        if(beepers_present()):
+            put_beeper()
+        turn_left()
+def clean_diagnal():
+    while(front_is_clear()):
+        pick_beeper()
+        move()
+        turn_left()
+        move()
+        turn_right()
+    pick_beeper()#fence post
+def check_midpoint():
+    turn_right()
+    while(front_is_clear()):
+        move()
+        if(beepers_present()):#odd numbers
+            pick_beeper()
+            go_down()
+            put_beeper()
+        turn_right()
+        if(front_is_clear()):
+            move()
+        if(beepers_present()):#even numbers
+            pick_beeper()
+            go_down()
+            put_beeper()
+        turn_left()
+if __name__ == '__main__':
+    main()

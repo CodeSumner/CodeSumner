@@ -1,0 +1,66 @@
+https://codeinplace.stanford.edu/cip3/share/5uxbUM4M3JONRgQvR44D
+
+PainterKarel.txt
+from karel.stanfordkarel import *
+
+"""
+Karel should paint the whole world, any color you want. 
+As an extension, have karel randomly paint each corner.
+"""
+
+
+def main():
+    """
+    Strategy:paint the world use "comb" method.
+    After paint each row, return to the first column and face east.
+    This makes for a consistent pre condition/ post condition match.
+    """
+    while left_is_clear():
+        # while loop always assumes that karel is facing east.
+        paint_row()
+        return_to_first_col()
+        change_to_next_row()
+    # fence-post
+    paint_row()
+    
+def paint_row():
+    while front_is_clear():
+        random_paint()
+        move()
+        random_paint()
+
+def random_paint():
+    """
+    Paint the row with random two colors.
+    Pre: karel is facing east at the start of the row.
+    Post: karel is facing east at the end of the row.
+    """
+    if random():
+        paint_corner("#4330f5")
+    else:
+        paint_corner("#5393a5")
+    
+def change_to_next_row():
+    turn_left()
+    move()
+    turn_right()
+    
+def turn_right():
+    for i in range(3):
+        turn_left()
+
+def return_to_first_col():
+    turn_back()
+    while front_is_clear():
+        move()
+    turn_back()  
+    
+def turn_back():
+    turn_left()
+    turn_left()
+        
+
+
+# There is no need to edit code beyond this point
+if __name__ == '__main__':
+    main()
